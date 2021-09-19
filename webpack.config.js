@@ -11,6 +11,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const jsReg = /\.(js|jsx|ts|tsx)$/
 const nodeModulesReg = /node_modules/
@@ -138,20 +139,22 @@ module.exports = defineConfig({
   ].filter(Boolean),
   optimization: {
     minimize: !isDev,
-    minimizer: [
-      !isDev &&
-        new TerserPlugin({
-          extractComments: false,
-          terserOptions: {
-            format: {
-              comments: false,
+    minimizer: !isDev
+      ? [
+          new TerserPlugin({
+            extractComments: false,
+            terserOptions: {
+              format: {
+                comments: false,
+              },
+              compress: {
+                drop_console: true,
+              },
             },
-            compress: {
-              drop_console: true,
-            },
-          },
-        }),
-    ].filter(Boolean),
+          }),
+          new CssMinimizerPlugin(),
+        ]
+      : [],
     splitChunks: getSplitChunksConfig(['react']),
   },
   devtool: isDev ? 'eval-cheap-module-source-map' : false,
