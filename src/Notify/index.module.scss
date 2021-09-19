@@ -1,0 +1,32 @@
+
+.notify {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  color: rgba(0, 0, 0, .8);
+}
+
+.title {
+  border-bottom: 1px dashed rgba(0, 0, 0, .2);
+  color: rgba(0, 0, 0, .5);
+  padding-bottom: 3px;
+}
+
+.item {
+  & + & {
+    margin-top: 5px;
+  }
+}
+
+.link {
+  text-decoration: none;
+  padding: 1px 3px;
+  transition: all .4s linear;
+  border-radius: 4px;
+  color: #3eaf7c;
+  margin-right: 5px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .05);
+  }
+}
