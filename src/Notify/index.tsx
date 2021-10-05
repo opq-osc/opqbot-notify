@@ -8,8 +8,12 @@ import dayjs from 'dayjs'
 
 import { NotifyContent } from './NotifyContent'
 
-export const UNIVERSAL_NOTIFY_KEY = '__opqbot-notify'
+// Agreement: version + 1 at each update
+export const VERSION = 'v1'
+export const UNIVERSAL_NOTIFY_KEY = `__opqbot-notify-${VERSION}`
 export const NORMAL_DATE_FORMAT = 'YYYY-MM-DD'
+
+export const isDev = process.env.NODE_ENV === 'development'
 
 export const Notify: React.FC = () => {
   const [prevDate, setPrevDate] = useLocalStorage(
@@ -21,7 +25,7 @@ export const Notify: React.FC = () => {
     const currentDateIns = dayjs()
     const prevDateIns = dayjs(prevDate)
 
-    const isNeedNotify = currentDateIns.isAfter(prevDateIns, 'day')
+    const isNeedNotify = currentDateIns.isAfter(prevDateIns, 'day') || isDev
     if (!isNeedNotify) {
       return
     }

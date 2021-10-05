@@ -8,24 +8,22 @@ export const NotifyContent: React.FC<{
   return (
     <div className={styles.notify}>
       <div className={cx(styles.item, styles.title)}>OPQBOT Global Notify</div>
-      <div className={styles.item}>由于协议变更，为了保护您的安全</div>
+      <div className={styles.item}>最新版本解决了图片问题，建议您</div>
       <div className={styles.item}>
-        建议您 <strong>立即停止</strong> 所有正在运行的实例
-      </div>
-      <div className={styles.item}>
+        立即
         <a
-          href="https://docs.opqbot.com/other/join.html"
+          href="https://github.com/opq-osc/OPQ/releases"
           target="_blank"
-          title="group info"
+          title="new version"
           rel="noreferrer"
           className={styles.link}
           onClick={(e) => {
             onOpenLink?.()
           }}
         >
-          关注我们的群组
+          更新最新版本 v6.7
         </a>
-        耐心等待更新升级
+        获取更好的体验
       </div>
     </div>
   )
