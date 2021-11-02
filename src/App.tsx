@@ -7,7 +7,8 @@ function App() {
     <Router basename={window.__POWERED_BY_QIANKUN__ ? '/' : '/'}>
       <Switch>
         <Route path="/">
-          <Notify />
+          {/* <Notify /> */}
+          <div></div>
         </Route>
       </Switch>
     </Router>
